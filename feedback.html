@@ -228,6 +228,11 @@
 
     // Handle Approve Button
     document.getElementById('approveButton').addEventListener('click', function () {
+        const button = document.getElementById('approveButton');
+        // Disable button and show loading state
+        button.disabled = true;
+        button.textContent = 'Approving...';
+
         const mealPlanData = getMealPlanDataFromURL(); // Get the meal plan data from the URL
 
         // Prepare the data to send in the POST request
@@ -259,6 +264,11 @@
         .catch(error => {
             console.error('Error:', error);
             alert('An error occurred while approving the meal plan.');
+        })
+        .finally(() => {
+            // Re-enable button and restore original text
+            button.disabled = false;
+            button.textContent = 'Approve';
         });
 });
   </script>
