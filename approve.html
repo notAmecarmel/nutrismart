@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Plan Approval - NutriSmart</title>
+    <style>
+        :root {
+            --primary-green: #4CAF50;
+            --light-green: #E8F5E9;
+            --hover-green: #45a049;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+        .brand-name {
+            font-size: 24px;
+            color: var(--primary-green);
+            margin: 0;
+        }
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .approval-message {
+            background-color: var(--light-green);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        .image-placeholder {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 20px 0;
+            text-align: center;
+            color: #666;
+        }
+        h1, h2, h3 {
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+        p {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="onlylogoNoBg.png" alt="NutriSmart Logo" class="logo" style="width: 50px; height: 50px; border-radius: 8px; object-fit: contain;">
+            <h1 class="brand-name">NutriSmart</h1>
+        </div>
+    </header>
+    <main class="main-content">
+        <div id="content" class="approval-message"></div>
+        <div style="text-align: center;">
+            <img src="trees.png" alt="Additional image" style="max-width: 100%; height: auto; margin: 0 auto; display: block;">
+        </div>
+    </main>
+
+    <script>
+        // Retrieve the HTML content from session storage
+        const htmlContent = sessionStorage.getItem('mealPlanHTML');
+
+        if (htmlContent) {
+            // Display the HTML content on the page
+            document.getElementById('content').innerHTML = htmlContent;
+        } else {
+            // Handle the case where no HTML content is found
+            document.getElementById('content').innerHTML = '<p>No meal plan data found.</p>';
+        }
+
+        // Clear the session storage after use (optional)
+        sessionStorage.removeItem('mealPlanHTML');
+    </script>
+</body>
+</html>

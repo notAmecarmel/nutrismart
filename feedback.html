@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Plan Feedback - NutriSmart</title>
+  <style>
+    :root {
+      --primary-green: #4CAF50;
+      --light-green: #E8F5E9;
+      --hover-green: #45a049;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+    .header {
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 4px var(--shadow-color);
+      margin-bottom: 30px;
+    }
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo-placeholder {
+      width: 50px;
+      height: 50px;
+      background-color: var(--light-green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-green);
+      font-weight: bold;
+    }
+    .brand-name {
+      font-size: 24px;
+      color: var(--primary-green);
+      margin: 0;
+    }
+    .main-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .image-placeholder {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 40px;
+      margin: 20px 0;
+      text-align: center;
+      color: #666;
+    }
+    h1, h2, h3 {
+      color: var(--primary-green);
+      font-weight: 500;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .meal-plan-day {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--light-green);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .meal-plan-day:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      resize: vertical;
+      background-color: white;
+      box-sizing: border-box;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    }
+    button {
+      padding: 12px 24px;
+      background-color: var(--primary-green);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--hover-green);
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    #responseMessage {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <img src="onlylogoNoBg.png" alt="NutriSmart Logo" class="logo" style="width: 50px; height: 50px; border-radius: 8px;">
+      <h1 class="brand-name">NutriSmart</h1>
+    </div>
+  </header>
+  <main class="main-content">
+    <h1>Meal Plan Feedback</h1>
+  <div id="meal-plan-response"></div>
+  <textarea id="feedbackBox" placeholder="Enter your feedback here..."></textarea>
+  <button id="sendFeedbackButton">Send Feedback</button>
+  <button id="approveButton">Approve</button>
+  <p id="responseMessage"></p>
+  <div style="text-align: center;"><img src="background.png" alt="Meat"></div>
+  </main>
+
+  <script>
+
+    // Function to extract meal plan data from the URL
+    function getMealPlanDataFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const data = urlParams.get('data');
+      if (data) {
+        return JSON.parse(decodeURIComponent(data));
+      }
+      return null;
+    }
+
+    // Function to generate HTML for the meal plan
+    function generateMealPlanHTML(json) {
+  const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  let html = `<h2>Meal Plan</h2>`;
+
+  console.log('JSON Data:', json); // Debugging: Log the entire JSON data
+  console.log('Week Data:', json.output.week); // Debugging: Log the week data
+
+  days.forEach(day => {
+    if (json.output.week && json.output.week[day]) {
+      html += `
+        <div class="meal-plan-day">
+          <h3>${capitalizeFirstLetter(day)}</h3>
+          <p><strong>Breakfast:</strong> ${json.output.week[day].breakfast}</p>
+          <p><strong>Lunch:</strong> ${json.output.week[day].lunch}</p>
+          <p><strong>Dinner:</strong> ${json.output.week[day].dinner}</p>
+        </div>
+      `;
+      console.log(`Meal plan for ${day} displayed.`); // Debugging: Confirm the day's meal plan is displayed
+    }
+  });
+
+  return html;
+}
+
+    // Helper function to capitalize the first letter of a string
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    // Display the meal plan
+    const mealPlanData = getMealPlanDataFromURL();
+    console.log(mealPlanData);
+    if (mealPlanData) {
+      const mealPlanContainer = document.getElementById('meal-plan-response');
+      mealPlanContainer.innerHTML = generateMealPlanHTML(mealPlanData);
+      console.log("entre");
+    } else {
+      document.getElementById('meal-plan-response').innerHTML = '<p>No meal plan data found.</p>';
+    }
+
+    // Handle Send Feedback Button
+    document.getElementById('sendFeedbackButton').addEventListener('click', function () {
+      const feedback = document.getElementById('feedbackBox').value;
+
+      // Disable the button to prevent multiple clicks
+      const button = document.getElementById('sendFeedbackButton');
+      button.disabled = true;
+      button.textContent = 'Sending Feedback...';
+
+      // Send feedback to the AI
+      fetch('https://primary-production-be5b.up.railway.app/webhook/fd4fd61f-8cad-40ba-a7d5-79a07e0d1f04', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ feedback: feedback, mealPlan: mealPlanData }),
+      })
+        .then(response => response.json())
+        .then(json => {
+          // Redirect to the feedback page with the updated meal plan data
+          window.location.href = `feedback.html?data=${encodeURIComponent(JSON.stringify(json))}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while sending feedback.');
+        })
+        .finally(() => {
+          // Re-enable the button
+          button.disabled = false;
+          button.textContent = 'Send Feedback';
+        });
+    });
+
+    // Handle Approve Button
+    document.getElementById('approveButton').addEventListener('click', function () {
+        const mealPlanData = getMealPlanDataFromURL(); // Get the meal plan data from the URL
+
+        // Prepare the data to send in the POST request
+        const payload = {
+            mealPlan: mealPlanData,
+        };
+
+        // Send the POST request to the n8n webhook
+        fetch('https://primary-production-be5b.up.railway.app/webhook/0fc52780-70c2-4165-b2d7-277bcd01db4b', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Parse the response as text/html
+        })
+        .then(html => {
+            // Store the HTML content in session storage
+            sessionStorage.setItem('mealPlanHTML', html);
+
+            // Redirect to the approval page
+            window.location.href = 'approve.html';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while approving the meal plan.');
+        });
+});
+  </script>
+</body>
+</html>

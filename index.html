@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Plan Questionnaire</title>
+  <style>
+    :root {
+      --primary-green: #4CAF50;
+      --light-green: #E8F5E9;
+      --hover-green: #45a049;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1 {
+      color: var(--primary-green);
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      background-color: var(--light-green);
+      padding: 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .form-group:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+      background-color: white;
+    }
+    input[type="text"]:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    }
+    button {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 30px auto;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--hover-green);
+    }
+    select {
+      cursor: pointer;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+
+<style>
+        .header-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          padding: 20px;
+        }
+        .logo-img {
+          width: 250px;
+          height: 250px;
+          object-fit: contain;
+        }
+        .brand-name {
+          margin: 0;
+          font-size: 2rem;
+          color: var(--primary-green);
+        }
+      </style>
+      <img src="fullSpanishBg.png" alt="NutriSmart Logo" class="logo-img">
+    </div>
+  </header>
+  <main class="main-content">
+    <h1>Meal Plan Questionnaire</h1>
+    <form id="mealPlanForm">
+    <!-- Diet -->
+    <div class="form-group">
+      <label for="diet">Do you follow any specific diet (e.g. vegetarian, vegan, keto, paleo, etc.)?</label>
+      <input type="text" id="diet" name="diet" required>
+    </div>
+
+    <!-- Favorite Foods -->
+    <div class="form-group">
+      <label for="favoriteFoods">Do you have any favorite foods or ingredients?</label>
+      <textarea id="favoriteFoods" name="favoriteFoods" rows="3" required></textarea>
+    </div>
+
+    <!-- Foods to Avoid -->
+    <div class="form-group">
+      <label for="avoidFoods">Are there any foods you prefer to avoid due to taste?</label>
+      <input type="text" id="avoidFoods" name="avoidFoods" required>
+    </div>
+
+    <!-- Breakfast Preference -->
+    <div class="form-group">
+      <label for="breakfastPreference">Do you prefer sweet, savory, or neutral breakfasts?</label>
+      <select id="breakfastPreference" name="breakfastPreference" required>
+        <option value="sweet">Sweet</option>
+        <option value="savory">Savory</option>
+        <option value="neutral">Neutral</option>
+      </select>
+    </div>
+
+    <!-- International Cuisines -->
+    <div class="form-group">
+      <label for="cuisines">Do you have a preference for international cuisines (e.g. Mexican, Italian, Asian, etc.)?</label>
+      <input type="text" id="cuisines" name="cuisines" required>
+    </div>
+
+    <!-- Allergies or Intolerances -->
+    <div class="form-group">
+      <label for="allergies">Do you have any food allergies or intolerances (e.g. gluten, lactose, nuts, etc.)?</label>
+      <input type="text" id="allergies" name="allergies" required>
+    </div>
+
+    <!-- Medical Dietary Recommendations -->
+    <div class="form-group">
+      <label for="medicalDiet">Do you follow any medical dietary recommendations (e.g. low sodium, low sugar, high fiber, etc.)?</label>
+      <input type="text" id="medicalDiet" name="medicalDiet" required>
+    </div>
+
+    <!-- Health Conditions -->
+    <div class="form-group">
+      <label for="healthConditions">Do you have any health conditions we should consider (e.g. diabetes, hypertension, high cholesterol, etc.)?</label>
+      <input type="text" id="healthConditions" name="healthConditions" required>
+    </div>
+
+    <!-- Physical Activity -->
+    <div class="form-group">
+      <label for="physicalActivity">What is your level of physical activity (e.g. sedentary, moderate, active, very active)?</label>
+      <select id="physicalActivity" name="physicalActivity" required>
+        <option value="sedentary">Sedentary</option>
+        <option value="moderate">Moderate</option>
+        <option value="active">Active</option>
+        <option value="veryActive">Very Active</option>
+      </select>
+    </div>
+
+    <!-- Work or Activities -->
+    <div class="form-group">
+      <label for="workType">What type of work or activities do you do regularly (e.g. office, physical, mixed)?</label>
+      <input type="text" id="workType" name="workType" required>
+    </div>
+
+    <!-- Meals and Snacks -->
+    <div class="form-group">
+      <label for="mealsPerDay">How many main meals and snacks do you prefer per day?</label>
+      <input type="text" id="mealsPerDay" name="mealsPerDay" required>
+    </div>
+
+    <!-- Cooking Frequency -->
+    <div class="form-group">
+      <label for="cookingFrequency">Do you have time to cook every day? If not, how many days per week can you cook?</label>
+      <input type="text" id="cookingFrequency" name="cookingFrequency" required>
+    </div>
+
+    <!-- Meal Plan Goal -->
+    <div class="form-group">
+      <label for="mealPlanGoal">What is your main goal with this meal plan (e.g. weight loss, muscle gain, staying healthy, improving athletic performance)?</label>
+      <input type="text" id="mealPlanGoal" name="mealPlanGoal" required>
+    </div>
+
+    <!-- Meal Preparation Time -->
+    <div class="form-group">
+      <label for="mealPrepTime">How important is it for you that meals are quick to prepare?</label>
+      <select id="mealPrepTime" name="mealPrepTime" required>
+        <option value="veryImportant">Very important (ideally under 30 minutes)</option>
+        <option value="important">Important</option>
+        <option value="notImportant">Not important</option>
+      </select>
+    </div>
+
+    <!-- Location -->
+    <div class="form-group">
+      <label for="location">Where do you currently live? (This helps consider local ingredients and seasonal availability.)</label>
+      <input type="text" id="location" name="location" required>
+    </div>
+
+    <!-- Access to Fresh Food -->
+    <div class="form-group">
+      <label for="freshFoodAccess">How easy is it for you to access fresh food or specific ingredients?</label>
+      <select id="freshFoodAccess" name="freshFoodAccess" required>
+        <option value="veryEasy">Very easy (I have multiple supermarkets nearby)</option>
+        <option value="easy">Easy</option>
+        <option value="difficult">Difficult</option>
+      </select>
+    </div>
+
+    <!-- Ingredient Preference -->
+    <div class="form-group">
+      <label for="ingredientPreference">Do you prefer common ingredients, or do you like experimenting with new foods?</label>
+      <select id="ingredientPreference" name="ingredientPreference" required>
+        <option value="common">Common ingredients</option>
+        <option value="experimental">I like experimenting with new foods</option>
+      </select>
+    </div>
+
+    <!-- Meal Times -->
+    <div class="form-group">
+      <label for="mealTimes">What time do you usually have breakfast, lunch, and dinner?</label>
+      <input type="text" id="mealTimes" name="mealTimes" required>
+    </div>
+
+    <!-- Eating Out or Home Cooking -->
+    <div class="form-group">
+      <label for="eatingHabits">Do you usually eat out or prepare meals at home?</label>
+      <select id="eatingHabits" name="eatingHabits" required>
+        <option value="eatOut">Eat out</option>
+        <option value="prepareAtHome">Prepare meals at home</option>
+      </select>
+    </div>
+
+    <!-- Beverage Habits -->
+    <div class="form-group">
+      <label for="beverageHabits">Do you regularly drink coffee, tea, or any specific beverage?</label>
+      <input type="text" id="beverageHabits" name="beverageHabits" required>
+    </div>
+
+    <!-- Water Intake -->
+    <div class="form-group">
+      <label for="waterIntake">How many liters of water do you drink per day?</label>
+      <input type="text" id="waterIntake" name="waterIntake" required>
+    </div>
+
+    <!-- Kitchen Appliances -->
+    <div class="form-group">
+      <label for="kitchenAppliances">Do you have access to specific kitchen appliances (e.g. oven, blender, slow cooker)?</label>
+      <input type="text" id="kitchenAppliances" name="kitchenAppliances" required>
+    </div>
+
+    <!-- Cooking Comfort Level -->
+    <div class="form-group">
+      <label for="cookingComfort">How comfortable are you with cooking (e.g. beginner, intermediate, advanced)?</label>
+      <select id="cookingComfort" name="cookingComfort" required>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+<div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+  <img src="salad.png" alt="NutriSmart Logo" class="logo-img">
+  <img src="meat.png" alt="NutriSmart Logo" class="logo-img">
+</div>
+</main>
+
+  <script>
+    document.getElementById('mealPlanForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+  
+      const formData = new FormData(event.target);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+  
+      fetch('https://primary-production-be5b.up.railway.app/webhook/61fb7fef-355b-4742-ac50-db0c19281f4c/form', {
+        method: 'POST',
+        mode:'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Path': '/questionnaire', // Custom header to identify the path
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
+        .then(json => {
+          window.location.href = `feedback.html?data=${encodeURIComponent(JSON.stringify(json))}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while submitting the form.');
+        });
+    });
+  </script>
+</body>
+</html>
