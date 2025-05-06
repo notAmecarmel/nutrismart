@@ -10,72 +10,117 @@
             --light-green: #E8F5E9;
             --hover-green: #45a049;
             --shadow-color: rgba(0, 0, 0, 0.1);
+            --text-primary: #2C3E50;
+            --text-secondary: #555;
+            --spacing-unit: 1rem;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: #333;
-            line-height: 1.6;
+            background-color: #fafafa;
+            color: var(--text-primary);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
         .header {
             background-color: white;
-            padding: 20px;
-            box-shadow: 0 2px 4px var(--shadow-color);
-            margin-bottom: 30px;
+            padding: calc(var(--spacing-unit) * 1.5) 0;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s ease;
         }
         .header-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: calc(var(--spacing-unit) * 1.5);
+            padding: 0 var(--spacing-unit);
         }
-        .logo-placeholder {
-            width: 50px;
-            height: 50px;
-            background-color: var(--light-green);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-green);
-            font-weight: bold;
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
         }
         .brand-name {
-            font-size: 24px;
+            font-size: 2rem;
             color: var(--primary-green);
             margin: 0;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
         .main-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 1000px;
+            margin: calc(var(--spacing-unit) * 2) auto;
+            padding: 0 var(--spacing-unit);
+            min-height: calc(100vh - 300px);
         }
         .approval-message {
-            background-color: var(--light-green);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 6px var(--shadow-color);
+            background-color: white;
+            padding: calc(var(--spacing-unit) * 2.5);
+            border-radius: 16px;
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            text-align: left;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            border: 1px solid rgba(76, 175, 80, 0.1);
         }
-        .image-placeholder {
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            padding: 40px;
-            margin: 20px 0;
-            text-align: center;
-            color: #666;
-        }
-        h1, h2, h3 {
+        .approval-message h2 {
+            margin-top: 0;
+            font-size: 1.75rem;
             color: var(--primary-green);
-            font-weight: 500;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
         }
-        p {
-            margin: 15px 0;
-            font-size: 16px;
+        .approval-message p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-unit);
+        }
+        .image-container {
+            margin-top: calc(var(--spacing-unit) * 3);
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+        .image-container img:hover {
+            transform: translateY(-5px);
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 calc(var(--spacing-unit) * 0.75);
+            }
+            .main-content {
+                padding: 0 calc(var(--spacing-unit) * 0.75);
+            }
+            .brand-name {
+                font-size: 1.5rem;
+            }
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            .approval-message {
+                padding: calc(var(--spacing-unit) * 1.5);
+            }
+            .approval-message h2 {
+                font-size: 1.5rem;
+            }
+            .approval-message p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -88,8 +133,8 @@
     </header>
     <main class="main-content">
         <div id="content" class="approval-message"></div>
-        <div style="text-align: center;">
-            <img src="trees.png" alt="Additional image" style="max-width: 100%; height: auto; margin: 0 auto; display: block;">
+        <div class="image-container">
+            <img src="trees.png" alt="Decorative nature image" loading="lazy">
         </div>
     </main>
 
